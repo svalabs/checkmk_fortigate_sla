@@ -1,0 +1,14 @@
+title: Fortigate SLA
+agents: snmp
+catalog: hw/network/fortinet
+license: GPLv2
+distribution: check_mk
+description:
+ This check displays the Fortigate Firewall Performance SLA (SD-WAN) - Latency, PacketLoss, Jitter
+ Warnings and critical thresholds can be set in Setup -> Services -> Service monitoring rules -> Fortigate Latency, PacketLoss, Jitter
+
+item:
+ The name of the Performance SLA
+
+inventory:
+ One service for each Performance SLA will be created
