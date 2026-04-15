@@ -134,7 +134,7 @@ def check_sla_fortinet(item, params, section) -> CheckResult:
                         label="Jitter: {}".format(
                             item2.LinkJitter,
                         ),
-                        metric_name="fortigate_sla_packetLoss",
+                        metric_name="fortigate_sla_jitter",
                     )
 
     else:
