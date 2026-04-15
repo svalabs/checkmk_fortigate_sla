@@ -16,8 +16,8 @@ The following checks are included:
 
 ## Compatibility
 The plugin is tested with the following major versions:
-* 2.3.0 -> v2.1.1 - v2.2.2
-* 2.4.0 -> v2.2.2
+* 2.3.0 -> v2.1.1 - v2.2.4
+* 2.4.0 -> v2.2.4
 
 ### Releases
 
@@ -27,6 +27,9 @@ See exchange.checkmk.com
 
 - 2.2.2:
  - Ported for CMK 2.4
+- 2.2.4:
+ - change jitter metric name (Thanks to TuneFish41)
+ - fix snmp detect
 
 ### Docs
 

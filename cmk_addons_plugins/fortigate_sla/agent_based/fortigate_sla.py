@@ -148,7 +148,7 @@ snmp_section_fortigate_sla = SimpleSNMPSection(
     name="fortigate_sla",
     parse_function=parse_sla,
     detect=all_of(
-        startswith(".1.3.6.1.2.1.1.2.0", ".1.3.6.1.4.1.12356.*"),
+        startswith(".1.3.6.1.2.1.1.2.0", ".1.3.6.1.4.1.12356"),
         exists(".1.3.6.1.4.1.12356.101.4.9.2.1.*"),
     ),
     # detect = startswith(".1.3.6.1.2.1.47.1.1.1.1.2.1", "fortinet"),
