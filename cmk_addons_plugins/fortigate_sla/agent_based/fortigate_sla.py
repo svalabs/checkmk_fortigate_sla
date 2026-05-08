@@ -17,10 +17,10 @@
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #   GNU General Public License for more details.
 #
-#   Copyright (C) 2025  SVA System Vertrieb Alexander GmbH
+#   Copyright (C) 2026  SVA System Vertrieb Alexander GmbH
 #                       by sebastian.haeger@sva.de
 #
-#   Last modified: 05.12.2025
+#   Last modified: 07.05.2026
 
 # Authors: Edificom SA <dev-auto@edificom.ch>; martinmartossimon@gmail.com
 
@@ -74,7 +74,7 @@ def parse_sla(string_table: StringTable) -> List[sla_fortinet]:
                 LinkIfName=LinkIfName,
                 LinkState=int(LinkState),
                 LinkPacketLoss=float(LinkPacketLoss),
-                LinkLatency=float(LinkLatency),
+                LinkLatency=float(LinkLatency)/1000,
                 LinkJitter=float(LinkJitter),
                 LinkName=str(LinkName),
                 LinkVdom=str(LinkVdom),
@@ -103,38 +103,45 @@ def check_sla_fortinet(item, params, section) -> CheckResult:
                 if item2.LinkState == 0:
                     yield from check_levels(
                         int(item2.LinkState),
-                        label="State: {}".format(
-                            item2.LinkState,
-                        ),
+                        label="State",
                         metric_name="fortigate_sla_state",
                         render_func=int,
                     )
 
-                    yield from check_levels(
-                        item2.LinkLatency,
-                        levels_upper=params["latency"],
-                        label="Latency: {}".format(
+                    mode, threshold = params["latency"]
+                    if mode == "fixed":
+                        warn_ms, crit_ms = threshold
+                        threshold = (warn_ms / 1000.0, crit_ms / 1000.0)
+                        yield from check_levels(
                             item2.LinkLatency,
-                        ),
-                        metric_name="fortigate_sla_latency",
-                    )
+                            levels_upper=("fixed", threshold),
+                            label="Latency",
+                            metric_name="fortigate_sla_latency",
+                            render_func=lambda v: f"{v * 1000:.2f} ms",
+                        )
+                    else:
+                        yield from check_levels(
+                            item2.LinkLatency,
+                            levels_upper=params["latency"],
+                            label="Latency",
+                            metric_name="fortigate_sla_latency",
+                            render_func=lambda v: f"{v * 1000:.2f} ms",
+                        )
 
                     yield from check_levels(
                         item2.LinkPacketLoss,
                         levels_upper=params["packetloss"],
-                        label="PacketLoss: {}".format(
-                            item2.LinkPacketLoss,
-                        ),
+                        label="PacketLoss",
                         metric_name="fortigate_sla_packetLoss",
+                        render_func=lambda v: f"{v:.2f} %",
                     )
 
                     yield from check_levels(
                         item2.LinkJitter,
                         levels_upper=params["jitter"],
-                        label="Jitter: {}".format(
-                            item2.LinkJitter,
-                        ),
+                        label="Jitter",
                         metric_name="fortigate_sla_jitter",
+                        render_func=lambda v: f"{v:.2f} ms",
                     )
 
     else:

@@ -15,9 +15,11 @@ The following checks are included:
 
 
 ## Compatibility
+**Forti has s and ms values in their snmpwalk**, see change 2.2.6
+
 The plugin is tested with the following major versions:
-* 2.3.0 -> v2.1.1 - v2.2.4
-* 2.4.0 -> v2.2.4
+* 2.3.0 -> v2.1.1 - v2.2.6
+* 2.4.0 -> v2.2.6
 
 ### Releases
 
@@ -26,10 +28,13 @@ See exchange.checkmk.com
 ### Changes
 
 - 2.2.2:
- - Ported for CMK 2.4
+  - Ported for CMK 2.4
 - 2.2.4:
- - change jitter metric name (Thanks to TuneFish41)
- - fix snmp detect
+  - change jitter metric name (Thanks to TuneFish41)
+  - fix snmp detect
+- 2.2.6:
+  - change latency unit from s to ms
+  - fix check levels duplicate output in summary
 
 ### Docs
 

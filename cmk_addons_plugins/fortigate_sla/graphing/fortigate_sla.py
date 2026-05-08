@@ -17,10 +17,10 @@
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #   GNU General Public License for more details.
 #
-#   Copyright (C) 2025  SVA System Vertrieb Alexander GmbH
+#   Copyright (C) 2026  SVA System Vertrieb Alexander GmbH
 #                       by sebastian.haeger@sva.de
 #
-#   Last modified: 20.11.2025
+#   Last modified: 07.05.2026
 
 # Authors: Edificom SA <dev-auto@edificom.ch>; martinmartossimon@gmail.com
 from cmk.gui.i18n import _
