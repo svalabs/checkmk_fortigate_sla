@@ -20,6 +20,7 @@ The following checks are included:
 The plugin is tested with the following major versions:
 * 2.3.0 -> v2.1.1 - v2.2.6
 * 2.4.0 -> v2.2.6
+* 2.5.0 -> v2.2.6
 
 ### Releases
 
