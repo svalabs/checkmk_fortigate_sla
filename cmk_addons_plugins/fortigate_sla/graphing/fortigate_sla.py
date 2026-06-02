@@ -20,55 +20,44 @@
 #   Copyright (C) 2026  SVA System Vertrieb Alexander GmbH
 #                       by sebastian.haeger@sva.de
 #
-#   Last modified: 07.05.2026
+#   Last modified: 02.06.2026
 
-# Authors: Edificom SA <dev-auto@edificom.ch>; martinmartossimon@gmail.com
-from cmk.gui.i18n import _
-from cmk.gui.plugins.metrics import metric_info, perfometer_info
-from cmk.gui.plugins.metrics.utils import check_metrics, m
+from cmk.graphing.v1 import Title
+from cmk.graphing.v1.graphs import Graph
+from cmk.graphing.v1.metrics import (
+    Color,
+    DecimalNotation,
+    Metric,
+    StrictPrecision,
+    Unit
+)
 
-metric_info["fortigate_sla_latency"] = {
-    "title": _("Latency"),
-    "unit": "s",
-    "color": "26/a",
-}
+metric_fortigate_sla_latency = Metric(
+    name="fortigate_sla_latency",
+    title=Title("Latency"),
+    unit=Unit(DecimalNotation("ms"), StrictPrecision(2)),
+    color=Color.BLUE,
+)
 
-metric_info["fortigate_sla_packetLoss"] = {
-    "title": _("PacketLoss"),
-    "unit": "%",
-    "color": "12/a",
-}
+metric_fortigate_sla_packetLoss = Metric(
+    name="fortigate_sla_packetLoss",
+    title=Title("PacketLoss"),
+    unit=Unit(DecimalNotation("%"), StrictPrecision(2)),
+    color=Color.DARK_BLUE,
+)
 
-metric_info["fortigate_sla_jitter"] = {
-    "title": _("Jitter"),
-    "unit": "s",
-    "color": "13/a",
-}
+metric_fortigate_sla_jitter = Metric(
+    name="fortigate_sla_jitter",
+    title=Title("Jitter"),
+    unit=Unit(DecimalNotation("ms"), StrictPrecision(2)),
+    color=Color.LIGHT_BLUE,
+)
 
-check_metrics["check_mk-fortigate_sla"] = {
-    "Latency": {"scale": m},
-    "Jitter": {"scale": m},
-}
-
-perfometer_info.append(
-    (
-        "dual",
-        [
-            {
-                "type": "linear",
-                "segments": [
-                    "fortigate_sla_latency",
-                    "fortigate_sla_jitter",
-                ],
-                "total": 0.2,
-            },
-            {
-                "type": "linear",
-                "segments": [
-                    "fortigate_sla_packetLoss",
-                ],
-                "total": 100,
-            },
-        ],
-    )
+graph_fortigate_sla = Graph(
+    name="fortigate_sla",
+    title=Title("Fortigate SLA"),
+    compound_lines=[
+        "fortigate_sla_latency",
+        "fortigate_sla_jitter"
+    ]
 )

@@ -18,9 +18,9 @@ The following checks are included:
 **Forti has s and ms values in their snmpwalk**, see change 2.2.6
 
 The plugin is tested with the following major versions:
-* 2.3.0 -> v2.1.1 - v2.2.6
-* 2.4.0 -> v2.2.6
-* 2.5.0 -> v2.2.6
+* 2.3.0 -> v2.1.1 - v2.2.7
+* 2.4.0 -> v2.2.7
+* 2.5.0 -> v2.2.7
 
 ### Releases
 
@@ -36,6 +36,8 @@ See exchange.checkmk.com
 - 2.2.6:
   - change latency unit from s to ms
   - fix check levels duplicate output in summary
+- 2.2.7:
+  - fix graphing + add value type to metric
 
 ### Docs
 
